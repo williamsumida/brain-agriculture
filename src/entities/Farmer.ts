@@ -12,8 +12,8 @@ export class Farmer {
   constructor(
     name: string,
     farm: Farm,
-    cpf: string,
-    cnpj: string,
+    cpf: string | undefined,
+    cnpj: string | undefined,
     id?: string,
   ) {
 

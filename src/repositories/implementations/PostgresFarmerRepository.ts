@@ -8,10 +8,11 @@ export class PostgresFarmerRepository implements FarmerRepository {
       await db`
       INSERT INTO farmer(id, name, cnpj, cpf)
       VALUES(
-        ${farmer.id}, ${farmer.name}, ${farmer.cnpj}, ${farmer.cpf}, 
+        ${farmer.id}, ${farmer.name}, ${farmer.cnpj}, ${farmer.cpf}
       );`;
     } catch (err) {
       console.log(err);
+      throw new Error("Farmer creation failed.");
     }
   }
 

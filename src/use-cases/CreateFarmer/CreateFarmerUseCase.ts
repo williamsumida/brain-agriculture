@@ -4,6 +4,12 @@ import { Crop } from "../../entities/Crop";
 import { FarmerRepository } from "../../repositories/FarmerRepository";
 import { FarmRepository } from "../../repositories/FarmRepository";
 import { CropRepository } from "../../repositories/CropRepository";
+import { isCpfValid, isCnpjValid, isAreaValid } from "./validations";
+
+import { InvalidCpfError } from "../../errors/InvalidCpfError";
+import { InvalidCnpjError } from "../../errors/InvalidCnpjError";
+import { InvalidAreaError } from "../../errors/InvalidAreaError";
+import { MustIncludeDocumentError } from "../../errors/MustIncludeDocumentError";
 
 interface CropDTO {
   name: string;
@@ -20,8 +26,8 @@ interface FarmDTO {
 
 interface CreateFarmerDTO {
   name: string;
-  cpf: string;
-  cnpj: string;
+  cpf: string | undefined;
+  cnpj: string | undefined;
   farm: FarmDTO;
 }
 
@@ -34,6 +40,26 @@ export class CreateFarmerUseCase {
 
   async execute(data: CreateFarmerDTO) {
     const { name, cpf, cnpj, farm } = data;
+
+    const hasDocuments = isCpfValid(cpf) || isCnpjValid(cnpj);
+    const invalidCpf = typeof cpf === "string" && !isCpfValid(cpf);
+    const invalidCnpj = typeof cnpj === "string" && !isCnpjValid(cnpj);
+
+    if (!hasDocuments) {
+      throw new MustIncludeDocumentError();
+    }
+
+    if (invalidCpf) {
+      throw new InvalidCpfError();
+    }
+
+    if (invalidCnpj) {
+      throw new InvalidCnpjError();
+    }
+
+    if (!isAreaValid(farm.area, farm.cropArea, farm.vegetationArea)) {
+      throw new InvalidAreaError();
+    }
 
     const crops: Array<Crop> = [];
 
