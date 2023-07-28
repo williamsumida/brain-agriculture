@@ -1,7 +1,7 @@
 import { env } from "./env";
 
-//import "./database/migration";
-//import "./database/postgres";
+import "./database/migration";
+import "./database/postgres";
 
 import { app } from "./app";
 
