@@ -1,6 +1,16 @@
 version: '3.8'
 services:
-  db:
+  api:
+    build: .
+    container_name: 'api-brain-agriculture-williamsumida'
+    ports:
+      - 3000:3000
+    expose:
+      - 3000
+    depends_on:
+      - brain-agriculture-db
+
+  brain-agriculture-db:
     image: postgres
     restart: always
     ports:
