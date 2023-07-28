@@ -19,6 +19,8 @@ docker compose up -d
 
 Requisições relativas ao endereço `http://localhost:3000`.
 
+### Criação do Produtor
+
 | Método | Request | Descrição                                               |
 | ------ | ------- | ------------------------------------------------------- |
 | POST   | /farmer | Cria um produtor com sua respectiva fazenda e culturas. |
@@ -38,6 +40,50 @@ Body da requisição:
     "crops": [
       {
         "name": "Soja"
+      }
+    ]
+  }
+}
+```
+
+### Informações do Dashboard
+
+| Método | Request    | Descrição                                             |
+| ------ | ---------- | ----------------------------------------------------- |
+| GET    | /dashboard | Retorna todas as informações referentes ao Dashboard. |
+
+Exemplo de response:
+
+```json
+{
+  "dashboard": {
+    "farmCount": "7",
+    "totalArea": "350000",
+    "totalCropArea": "210000",
+    "totalVegetationArea": "140000",
+    "provinceFarmStats": [
+      {
+        "province": "Sao Paulo",
+        "farmCount": "7",
+        "totalArea": "350000"
+      }
+    ],
+    "cropFarmStats": [
+      {
+        "crop": "Soja",
+        "farmCount": "4"
+      },
+      {
+        "crop": "Cana de açúcar",
+        "farmCount": "1"
+      },
+      {
+        "crop": "Algodão",
+        "farmCount": "1"
+      },
+      {
+        "crop": "Milho",
+        "farmCount": "1"
       }
     ]
   }

@@ -4,8 +4,8 @@ import { farm } from "./farm";
 export const farmer = pgTable("farmer", {
   id: text("id").primaryKey(),
   name: text("name"),
-  cpf: text("cpf"),
-  cnpj: text("cnpj"),
+  cpf: text("cpf").unique(),
+  cnpj: text("cnpj").unique(),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow()
 });

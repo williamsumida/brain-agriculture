@@ -8,6 +8,20 @@
       "when": 1690535700457,
       "tag": "0000_flowery_master_chief",
       "breakpoints": false
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1690553618263,
+      "tag": "0001_calm_swordsman",
+      "breakpoints": false
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1690553690458,
+      "tag": "0002_mysterious_thunderbolts",
+      "breakpoints": false
     }
   ]
 }

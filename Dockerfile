@@ -6,6 +6,5 @@ RUN npm install
 COPY . .
 COPY .env.example .env
 
-CMD [ "npm", "run", "generate" ]
 CMD [ "npm", "run", "dev" ]
 
